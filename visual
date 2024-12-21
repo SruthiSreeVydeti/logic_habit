@@ -1,0 +1,21 @@
+# Visualization: Line Chart
+                        
+                        progress_trend = filtered_data.groupby(["date", "status"]).size().unstack(fill_value=0).reset_index()
+                        fig3, ax3 = plt.subplots(figsize=(10, 5))
+                        for status in ["completed", "skipped", "pending"]:
+                            if status in progress_trend.columns:
+                                ax3.plot(
+                                    progress_trend["date"],
+                                    progress_trend[status],
+                                    label=status.capitalize(),
+                                    marker="o"
+                                )
+
+                        ax3.set_title(f"Trend Over Time :{ selected_habit}")
+                        ax3.set_xlabel("date")
+                        ax3.set_ylabel("status,completed,pending)")  
+                        ax.set_yticks([0,1,2],labels=["pending","skipped","completed"])
+                        ax3.legend(title="habit status")
+                        ax3.grid(True)
+                        plt.xticks(rotation=45)
+                        st.pyplot(fig3)
